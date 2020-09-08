@@ -1,4 +1,4 @@
-# cr-vio-bench
+# Vio Playground
 
 A Docker based approach to streamline open-source Visual(-Inertial) Odometry algorithms instalation, benchmarking and usage with an Intel® RealSense™ D435i.
 
