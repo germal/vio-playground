@@ -1,0 +1,9 @@
+[submodule "d435i/realsense_ws/ddynamic_reconfigure"]
+	path = d435i/realsense_ws/ddynamic_reconfigure
+	url = https://github.com/pal-robotics/ddynamic_reconfigure
+[submodule "d435i/realsense_ws/realsense-ros"]
+	path = d435i/realsense_ws/realsense-ros
+	url = https://github.com/ruimscarvalho98/realsense-ros
+[submodule "d435i/realsense_ws/librealsense"]
+	path = d435i/realsense_ws/librealsense
+	url = https://github.com/ruimscarvalho98/librealsense
