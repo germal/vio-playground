@@ -33,12 +33,12 @@ RUN echo -e '\n========== installing basic utils =======' \
 	&& apt-get install -y libglew-dev
 # Openvslam dependencies
 RUN echo -e '\n=========== Installing OpenVslam dependencies =====0' \
-	&& apt install ros-kinetic-image-transport 
+	&& apt-get install ros-kinetic-image-transport
 
 # Ceres Dependencies (needed for vins fusion)
 RUN echo '========== install ceres dependencies ==========' \
-	&& apt install -y libeigen3-dev libsuitesparse-dev libgoogle-glog-dev libatlas-base-dev libtbb-dev 
-
+	&& apt-get install -y libeigen3-dev libsuitesparse-dev libgoogle-glog-dev libatlas-base-dev libtbb-dev \
+        && apt-get install libglew-dev
 
 # Realsense Camera drivers and software instalation
 RUN echo -e '\n========== install realsense libs and dependencies ===='\

@@ -22,3 +22,6 @@
 [submodule "workspaces/vins_fusion_ws/src/VINS-Fusion"]
 	path = workspaces/vins_fusion_ws/src/VINS-Fusion
 	url = https://github.com/goodgodgd/VINS-Fusion.git
+[submodule "workspaces/ORB_SLAM3"]
+	path = workspaces/ORB_SLAM3
+	url = https://github.com/UZ-SLAMLab/ORB_SLAM3.git
