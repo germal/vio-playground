@@ -7,3 +7,9 @@
 [submodule "d435i/realsense_ws/src/ddynamic_reconfigure"]
 	path = d435i/realsense_ws/src/ddynamic_reconfigure
 	url = https://github.com/pal-robotics/ddynamic_reconfigure
+[submodule "workspaces/maplab_ws/src/maplab"]
+	path = workspaces/maplab_ws/src/maplab
+	url = https://github.com/ruimscarvalho98/maplab
+[submodule "workspaces/maplab_ws/src/maplab_dependencies"]
+	path = workspaces/maplab_ws/src/maplab_dependencies
+	url = https://github.com/ethz-asl/maplab_dependencies
