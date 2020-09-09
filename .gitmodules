@@ -13,3 +13,12 @@
 [submodule "workspaces/maplab_ws/src/maplab_dependencies"]
 	path = workspaces/maplab_ws/src/maplab_dependencies
 	url = https://github.com/ethz-asl/maplab_dependencies
+[submodule "workspaces/rovio_ws/src/rovio"]
+	path = workspaces/rovio_ws/src/rovio
+	url = https://github.com/ruimscarvalho98/rovio
+[submodule "workspaces/rovio_ws/src/kindr"]
+	path = workspaces/rovio_ws/src/kindr
+	url = https://github.com/ethz-asl/kindr
+[submodule "workspaces/vins_fusion_ws/src/VINS-Fusion"]
+	path = workspaces/vins_fusion_ws/src/VINS-Fusion
+	url = https://github.com/goodgodgd/VINS-Fusion.git

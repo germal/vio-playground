@@ -13,7 +13,6 @@ function catkin_init_ws_and_build() {
 	catkin config --merge-devel # Necessary for catkin_tools >= 0.4.
 	catkin config --extend /opt/ros/kinetic
 	catkin config --cmake-args \
-    #    -DCATKIN_ENABLE_TESTING=False \
         -DCMAKE_BUILD_TYPE=Release \
 		-DMAKE_SCENE=ON \
 		-DBUILD_WITH_MARCH_NATIVE=ON \
@@ -23,6 +22,7 @@ function catkin_init_ws_and_build() {
 	   	-DBOW_FRAMEWORK=DBoW2
 
 	echo -e "\n[Build $1]"
-	catkin build $4 -j4
+	catkin build $4 
+	catkin build $4
 	echo -e "[Build finished]"
 }
