@@ -31,6 +31,7 @@ RUN echo -e '\n========== installing basic utils =======' \
         && apt-get install -y libreadline-dev libssh2-1-dev pylint python-autopep8 python-catkin-tools \
         && apt-get install -y python-git python-setuptools python-termcolor python-wstool  \  
 	&& apt-get install -y libglew-dev
+        
 # Openvslam dependencies
 RUN echo -e '\n=========== Installing OpenVslam dependencies =====0' \
 	&& apt-get install ros-kinetic-image-transport
@@ -82,14 +83,5 @@ RUN echo -e '\n ====== install gazebo ============================='\
 #IMU tools
 RUN apt-get install libdw-dev ros-kinetic-cv-bridge
 
-## Nvidia and OpenGL 
-#RUN apt-get update && apt-get install -y --no-install-recommends \
-#        pkg-config \
-#        libxau-dev libxau-dev:i386 \
-#        libxdmcp-dev libxdmcp-dev:i386 \
-#        libxcb1-dev libxcb1-dev:i386 \
-#        libxext-dev libxext-dev:i386 \
-#        libx11-dev libx11-dev:i386 && \
-#    rm -rf /var/lib/apt/lists/*
 
 

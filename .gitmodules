@@ -34,3 +34,9 @@
 [submodule "evaluation/evo"]
 	path = evaluation/evo
 	url = https://github.com/MichaelGrupp/evo
+[submodule "workspaces/vins_fusion_ws/src/VINS-Fusion"]
+	path = workspaces/vins_fusion_ws/src/VINS-Fusion
+	url = https://github.com/HKUST-Aerial-Robotics/VINS-Fusion
+[submodule "workspaces/ORB_SLAM2_ws/src/orb_slam_2_ros"]
+	path = workspaces/ORB_SLAM2_ws/src/orb_slam_2_ros
+	url = https://github.com/appliedAI-Initiative/orb_slam_2_ros

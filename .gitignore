@@ -3,4 +3,5 @@ devel/
 logs/
 __pycache__
 .catkin_tools
+.catkin_workspace
 dependencies
