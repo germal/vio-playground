@@ -1,0 +1,8 @@
+.git
+.gitmodules
+evaluation
+visualization
+calibration
+workspaces
+*.md
+!README*.md
