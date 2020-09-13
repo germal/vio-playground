@@ -19,9 +19,6 @@
 [submodule "workspaces/rovio_ws/src/kindr"]
 	path = workspaces/rovio_ws/src/kindr
 	url = https://github.com/ethz-asl/kindr
-[submodule "workspaces/vins_fusion_ws/src/VINS-Fusion"]
-	path = workspaces/vins_fusion_ws/src/VINS-Fusion
-	url = https://github.com/goodgodgd/VINS-Fusion.git
 [submodule "workspaces/ORB_SLAM3"]
 	path = workspaces/ORB_SLAM3
 	url = https://github.com/UZ-SLAMLab/ORB_SLAM3.git
@@ -31,9 +28,9 @@
 [submodule "calibration/imu_utils_ws/src/code_utils"]
 	path = calibration/imu_utils_ws/src/code_utils
 	url = https://github.com/ruimscarvalho98/code_utils.git
-[submodule "calibration/imu_utils_ws/src/--force"]
-	path = calibration/imu_utils_ws/src/--force
-	url = https://github.com/gaowenliang/imu_utils
 [submodule "calibration/imu_utils_ws/src/imu_utils"]
 	path = calibration/imu_utils_ws/src/imu_utils
 	url = https://github.com/gaowenliang/imu_utils
+[submodule "evaluation/evo"]
+	path = evaluation/evo
+	url = https://github.com/MichaelGrupp/evo
