@@ -47,9 +47,11 @@ RUN echo -e '\n========== install realsense libs and dependencies ===='\
     && add-apt-repository "deb http://realsense-hw-public.s3.amazonaws.com/Debian/apt-repo xenial main" -u \
     && apt-get update -qq \
     && apt-get install librealsense2-dkms --allow-unauthenticated -y \
+    && apt-get install librealsense2-utils -y \
     && apt-get install librealsense2-dev --allow-unauthenticated -y \
     && apt-get -y install ros-kinetic-rgbd-launch ros-kinetic-ddynamic-reconfigure \
-    && apt-get -y install libglfw3-dev
+    && apt-get -y install libglfw3-dev \
+    python3 -m pip install pyrealsense2
 
 
 # Kalibr installation 
@@ -78,7 +80,7 @@ RUN echo -e '\n ====== install gazebo ============================='\
         ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-control 
 
 #IMU tools
-RUN apt-get install libdw-dev
+RUN apt-get install libdw-dev ros-kinetic-cv-bridge
 
 ## Nvidia and OpenGL 
 #RUN apt-get update && apt-get install -y --no-install-recommends \

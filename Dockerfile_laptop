@@ -2,7 +2,7 @@ FROM ros:kinetic-ros-base
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-COPY scripts/ros_kinetic_setup.sh /root
+#COPY scripts/ros_kinetic_setup.sh /root
 
 RUN apt-get  update \
         && apt-get upgrade -y \
@@ -10,9 +10,9 @@ RUN apt-get  update \
 
 
 #Ros installation 
-RUN echo -e '\n========== installing ros (from script) ==========' \
-        && chmod a+x /root/ros_kinetic_setup.sh \
-	&& /root/ros_kinetic_setup.sh        
+#RUN echo -e '\n========== installing ros (from script) ==========' \
+#        && chmod a+x /root/ros_kinetic_setup.sh \
+#	&& /root/ros_kinetic_setup.sh        
 
 
 

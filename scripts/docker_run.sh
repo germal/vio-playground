@@ -32,8 +32,10 @@ docker run --name "$NAME" -it --env="DISPLAY" \
 	--gpus all \
 	-v "$PROJECT/workspaces:/work" \
 	-v "$PROJECT/d435i:/cam" \
+	-v "$PROJECT/evaluation:/eval" \
 	-v "$PROJECT/calibration:/calib" \
 	-v "$PROJECT/scripts:/scripts" \
+	-v "$PROJECT/visualization:/viz" \
 	-v "$DATASET:/data/dataset" \
 	-v "$OUTPUT:/data/output" \
 	$IMAGE bash
