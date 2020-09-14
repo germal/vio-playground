@@ -51,8 +51,10 @@ RUN echo -e '\n========== install realsense libs and dependencies ===='\
     && apt-get install librealsense2-utils -y \
     && apt-get install librealsense2-dev --allow-unauthenticated -y \
     && apt-get -y install ros-kinetic-rgbd-launch ros-kinetic-ddynamic-reconfigure \
-    && apt-get -y install libglfw3-dev \
-    python3 -m pip install pyrealsense2
+    && apt-get -y install libglfw3-dev 
+
+# Realsense python wrappers
+RUN python3 -m pip install --upgrade pip && python3 -m pip install pyrealsense2
 
 
 # Kalibr installation 
@@ -68,7 +70,6 @@ RUN echo -e '\n=========installing S_MSCKF dependencies ============='\
 	&& apt-get install -y ros-kinetic-pcl-ros ros-kinetic-pcl-conversions
 
 # More python stuff
-RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install python-igraph --upgrade
 
 
@@ -81,7 +82,7 @@ RUN echo -e '\n ====== install gazebo ============================='\
         ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-control 
 
 #IMU tools
-RUN apt-get install libdw-dev ros-kinetic-cv-bridge
+RUN apt-get install libdw-dev ros-kinetic-cv-bridge -y
 
 
 

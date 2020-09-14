@@ -8,18 +8,17 @@
 # 
 # PROJECT: absolute path to main folder  
 # DATASET: absolute path to folder with sample datasets (euroc/tumvi)
-# SCRIPTS: Utility scripts for running and setting up things
 # OUTPUT:  Results from the VIO algorithms for benchmarking
 #
 
-PROJECT=/home/ruimsc98/connect_robotics/vio-playground
+PROJECT=/home/ruimsc98/vio-test/vio-playground
 DATASET=/media/ruimsc98/MASS/dataset
 OUTPUT=/home/ruimsc98/MASS/output
 ####################################################################
 
 # Additional configs
 default_name=vio-playground
-default_image=cr-all:openGL
+default_image=cr-final:desktop
 NAME=${1:-$default_name}
 IMAGE=${2:-$default_image}
 

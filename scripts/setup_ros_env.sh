@@ -1,5 +1,6 @@
 # ROS SETUP AND SOURCING
-
+ROS_VERSION=kinetic
+WORK_ROOT=/work
 echo "[Set the ROS evironment]"
 echo "export LC_ALL=C.UTF-8" >> ~/.bashrc
 echo "export LANG=C.UTF-8" >> ~/.bashrc

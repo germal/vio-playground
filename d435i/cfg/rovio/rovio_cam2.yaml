@@ -1,13 +1,13 @@
-image_width: 640
+mage_width: 640
 image_height: 480
 camera_name: cam2
 camera_matrix:
   rows: 3
   cols: 3
   data: [388.46657173, 0.0, 313.815309644, 0.0, 387.789127627, 238.360965183, 0.0, 0.0, 1.0]
-distortion_model: equidistant
+distortion_model: plumb_bob
 distortion_coefficients:
   rows: 1
-  cols: 4
-  data: [0.338206604332, 0.184085668324, -0.112606784926, 0.212487361892]
+  cols: 5
+  data: [0.00839921461539, -0.00280618099846, 0.000159580066114, 0.000661461516729, 0.0]
 

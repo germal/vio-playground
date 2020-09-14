@@ -1,6 +1,0 @@
-accelerometer_noise_density: 5.6681276705084049e-02   #Noise density (continuous-time)
-accelerometer_random_walk:   1.0914773159861363e-03   #Bias random walk
-gyroscope_noise_density:     2.7930955230644310e-03   #Noise density (continuous-time)
-gyroscope_random_walk:       2.7571476732540106e-05   #Bias random walk
-label:                    /camera/imu      #the IMU ROS topic
-
