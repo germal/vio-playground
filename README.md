@@ -22,7 +22,7 @@ the [nvidia container toolkit](https://github.com/NVIDIA/nvidia-docker).
 To install docker on ubuntu please refer to [the official guide](https://docs.docker.com/engine/install/ubuntu/). Or run the script bellow for 
 simplicity's sake (credits @goodgodgd)
 
-``
+```
 # remove old versions
 sudo apt-get remove docker docker-engine docker.io
 
