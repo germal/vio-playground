@@ -12,11 +12,11 @@ function catkin_init_ws_and_build() {
 	catkin init
 	catkin config --merge-devel # Necessary for catkin_tools >= 0.4.
 	catkin config --extend /opt/ros/kinetic
-	if [ $4 -eq "rovio"]; then
+	if [ $4 -eq "rovio" ]; then
 		catkin config --cmake-args \
     	    -DCMAKE_BUILD_TYPE=Release \
 			-DMAKE_SCENE=ON 
-	elif [ $4 -eq "openvslam"]; then
+	elif [ $4 -eq "openvslam" ]; then
 		catkin config --cmake-args-DBUILD_WITH_MARCH_NATIVE=ON \
     		-DUSE_PANGOLIN_VIEWER=ON \
 			-DUSE_SOCKET_PUBLISHER=OFF \
