@@ -1,0 +1,6 @@
+acc_noise_density:  5.6681276705084049e-02   #Noise density (continuous-time)
+acc_bias_random_walk_noise_density:   1.0914773159861363e-03   #Bias random walk
+gyro_noise_density:      2.7930955230644310e-03   #Noise density (continuous-time)
+gyro_bias_random_walk_noise_density:      2.7571476732540106e-05   #Bias random walk
+hardware_id:                    /camera/imu      #the IMU ROS topic
+
