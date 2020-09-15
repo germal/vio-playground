@@ -20,7 +20,7 @@ the [nvidia container toolkit](https://github.com/NVIDIA/nvidia-docker).
 ### Setting up Docker
 
 To install docker on ubuntu please refer to [the official guide](https://docs.docker.com/engine/install/ubuntu/). Or run the script bellow for 
-simplicity's sake (credits @goodgodgd)
+simplicity's sake (credits @goodgodgd).
 
 ```
 # remove old versions
@@ -48,7 +48,12 @@ sudo apt-get install docker-ce
 # to use docker without sudo
 sudo usermod -aG docker $USER
 ```
+or simply run:
 
+```
+cd <PATH_TO_VIO_PLAYGROUND>
+./scripts/docker_install
+```
 ## Setup and Instalation
 
 ### Downloading
@@ -56,7 +61,7 @@ sudo usermod -aG docker $USER
 This repo has many submodules. To pull them all at once use the ``` --recurse-submodules``` option.
 
 ```
-$ git clone --recurse-submodules https://github.com/ruimscarvalho98/cr-vio-bench.git
+git clone --recurse-submodules https://github.com/ruimscarvalho98/cr-vio-bench.git
 ```
 
 ### Docker
@@ -65,34 +70,32 @@ After cloning this repo, you need to create the docker image as well as build wh
 Change to the cloned repo directory and run (this installs ros and most dependencies needed so it's going to take a while):
 
 ```
-$ docker build . -t <NAME_FOR_THE_IMAGE>:<IMAGE_TAG>
+docker build . -t <NAME_FOR_THE_IMAGE>:<IMAGE_TAG>
 ```
 
 Next up, create a container by running 
 
-``` $ ./scripts/docker_run.sh <CONTAINER_NAME> <IMAGE NAME>:<IMAGE TAG>``` 
+``` ./scripts/docker_run.sh <CONTAINER_NAME> <IMAGE NAME>:<IMAGE TAG>``` 
 
 you can select which directories you want to share with the container by replacing the paths on the script:
 
 ```
 # PROJECT: absolute path to main folder  
-# DATASET: absolute path to folder with sample datasets (euroc/tumvi) 
-# SCRIPTS: Utility scripts for running and setting up things
-# OUTPUT:  Results from the VIO algorithms for benchmarking (not yet implemented)
+# DATASET: absolute path to folder with sample datasets (euroc/tumvi)
+# OUTPUT:  Results from the VIO algorithms for benchmarking
 
-PROJECT=/home/ruimsc98/connect_robotics/rovio-docker
-DATASET=/media/ruimsc98/MASS/
-SCRIPTS=/home/ruimsc98/connect_robotics/rovio-docker/scripts
-OUTPUT=/home/ruimsc98/connect_robotics/rovio-docker/output
+PROJECT=/home/ruimsc98/vio-test/vio-playground
+DATASET=/media/ruimsc98/MASS/dataset
+OUTPUT=/home/ruimsc98/MASS/output
 ```
-And you should be able to access the newly created container. If you want to run GUI applications you need to run
+After running you should be able to access the newly created container. If you want to run GUI applications you need to run
 ``` xhost +local:docker``` before starting the container.
 
 As I always forget to do that I prefer to create an alias for this command and run it instead (optional):
 
 ```
-$ echo 'alias <ALIAS_NAME>="xhost +local:docker && docker exec -it <CONTAINER_NAME> /bin/bash"' > ~/.bashrc
-$ source ~/.bashrc
+echo 'alias <ALIAS_NAME>="xhost +local:docker && docker exec -it <CONTAINER_NAME> /bin/bash"' > ~/.bashrc
+source ~/.bashrc
 ```
 
 Additionally, you can add the alias command to your ~/.bashrc file (host) to open a bash shell on the container everytime you open a new terminal window.  
@@ -102,81 +105,39 @@ Additionally, you can add the alias command to your ~/.bashrc file (host) to ope
 If you haven't already done it, start and create a shell inside the container
 
 ```
-$ docker start <CONTAINER_NAME>
-$ xhost +local:docker && docker exec -it <CONTAINER_NAME> /bin/bash
+docker start <CONTAINER_NAME>
+xhost +local:docker && docker exec -it <CONTAINER_NAME> /bin/bash
 ```
-
-Inside, the container run the script ```/work/scripts/catkin_from_scratch.sh ``` to build all packages at once. You can customise which algorithms/tools 
-you want as well by uncommenting the catkin_init_ws_and_build function call.
+Inside the container, the first thing you probably want to do is run these convenience scripts to setup the ROS environment and define aliases to source workspaces faster (this is optional and you can set this up the way you see fit).
 
 ```
-# BUILD SELECTED FRAMEWORKS
-catkin_init_ws_and_build "maplab" $MAPLAB_WS 1 "maplab"
-catkin_init_ws_and_build "rovio"  $ROVIO_WS  1 "rovio"
-catkin_init_ws_and_build "realsense" $REALSENSE_WS 1 "realsense"
-catkin_init_ws_and_build "kalibr"  $KALIBR_WS  1 "kalibr"
+/scripts/setup_ros_env.sh
+/scripts/define_all_alias.sh
 ```
 
+Next up, build the dependencies from source (Eigen, openCV, ceres and pangolin) as you'll most likely need them:
+
+```
+/scripts/install_all_dependencies.sh
+```
+
+Alternatively, you can run the individual scripts to choose only the libraries you need.
+
+Now you can build the algorithms you want by running the respective script.
 
 
 ## Calibration
 
-Calibration is done using the open-source tool [Kalibr](https://github.com/ethz-asl/kalibr). It is advised to build it from source instead of 
+Calibration is done using the open-source tool [Kalibr](https://github.com/ethz-asl/kalibr) and IMU_Utils. It is advised to build Kalibr from source instead of 
 running the cde package because of the exporting tools to formats needed in Rovio and Maplab as well as extra ROS features.
 
-For more info on how to perform the calibration follow the guide in the official repo [here](https://github.com/ethz-asl/kalibr/wiki/calibrating-the-vi-sensor), watch this [video](https://www.youtube.com/watch?v=puNXsnrYWTY) or check out this [guide](https://support.stereolabs.com/hc/en-us/articles/360012749113-How-can-I-use-Kalibr-with-the-ZED-Mini-camera-in-ROS-) which has some helpful tips concerning the camera and target configs.
-
-To configure the camera settings, change the launch file in ``` /work/realsense_ws/src/realsense-ros/realsense2_camera/launch/rs-camera.launch```. It is important that the unite-imu argument has 'linear_interpolation' as it's value to create a /camera/imu topic. A json config file was also added to disable
-the infrared emiter to be able to use SVIO setups (credits: @engcang).
-
-After obtaining the .yaml file from doing both the in/extrinsics and IMU calibration, an additional tool can be found under ``` /work/kalibr_ws/kalibr/aslam_offline_calibration/kalibr/python/exporters/ ``` to export to formats suitable for ROVIO(LI).
-
-
-## Running Rovio
-
-### Setup
-
-
-The calibration file in ```/work/rovio_ws/src/rovio/cfg/rovio_d435i.info ``` allows for the user to toggle between doing online calibration or not, according to the value of the doVECalibration parameter
-
+You can build the calibration tools by running the script
 ```
-Common
-{
-        doVECalibration true;           Should the camera-IMU extrinsics be calibrated online
-        depthType 1;                            Type of depth parametrization (0: normal, 1: inverse depth, 2: log, 3: hyperbolic)
-        verbose false;                          Is the verbose active
-}
-
+/scripts/install_calibration_tools.sh
 ```
 
-A custom node is also implemented in ```/work/rovio_ws/src/rovio/launch/rovio_d435i.launch ``` remaps the subscribed topic to those published by the rs_camera node.
+For more information on how to perform the calibration please check out the [wiki](https://github.com/ruimscarvalho98/vio-playground/wiki/Calibration)
 
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<launch>
-  <node pkg="rovio" type="rovio_node" name="rovio" output="screen">
-  <param name="filter_config" value="$(find rovio)/cfg/rovio_d435i.info"/>
-  <param name="camera0_config" value="$(find rovio)/cfg/cam1.yaml"/>
-  <param name="camera0_config" value="$(find rovio)/cfg/cam2.yaml"/>
-  <remap from="/cam0/image_raw" to="/camera/infra1/image_rect_raw"/>
-  <remap from="/cam1/image_raw" to="/camera/infra2/image_rect_raw"/>
-  <remap from="/imu0" to="/camera/imu"/>
-  </node>
-</launch>
-```
-
-Finally, the number of cams (to change between mono and stereo), as well as the number of features (which can have a major influence on cpu consumption) among others can be customised by changing the parameters in the CMakelists.txt file. 
-
-Additionally, don't forget to source the files properly after making changes.
-
-
-## Launching
-
-Rovio can be launched by running the command:
-
-```
-$ roslaunch rovio rovio_d435i.launch
-```
 ## References
 
 [Engcang's rovio application on D435i](https://github.com/engcang/rovio-application)
